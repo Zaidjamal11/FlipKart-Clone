@@ -5,6 +5,7 @@ import {AppBar, Toolbar, Typography, styled , Box} from '@mui/material';
 
 //components
 import Search from './Search';
+import CustomButtons from './CustomButtons';
 
 
 const StyledHeader = styled(AppBar)`
@@ -28,7 +29,12 @@ const PlusImage = styled('img')({
     height: '10px',
     marginLeft: 4 
 
-})
+});
+
+
+const CustomButtonWrapper = styled(Box)`
+ margin: 0 5% 0 auto;
+`
 
 const Header = () => {
 
@@ -51,6 +57,9 @@ const Header = () => {
 
             </Component>
             <Search />
+            <CustomButtonWrapper>
+              <CustomButtons />
+            </CustomButtonWrapper>
         </Toolbar>
     </StyledHeader>
      
