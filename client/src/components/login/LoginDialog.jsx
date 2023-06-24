@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { UseState } from 'react';
+import React from "react";
+import  { useState, useContext } from 'react';
 import { Box, Dialog,TextField, Button,  Typography, styled,} from "@mui/material";
 
+import { authenticateSignup } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
+
+
 const Component = styled(Box)`
-  height: 70vh;
+  height: 77vh;
   width: 90vh;
 `;
 
@@ -11,7 +15,7 @@ const Image = styled(Box)`
   background: #2874f0
     url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
     center 85% no-repeat;
-  height: 78%;
+  height: 90%;
   width: 28%;
   padding: 45px 35px;
   & > p , & > h5 {
@@ -99,9 +103,11 @@ const signupIntitialValues = {
 
 const LoginDialog = ({ open, setOpen }) => {
 
-  const [account, toggleAccount] = useState(accountInitialvalue.login)
+  const [ account, toggleAccount ] = useState(accountInitialvalue.login);
   const [signup, setSignup] = useState(signupIntitialValues);
 
+
+  const { setAccount } = useContext(DataContext);
 
 
 
@@ -121,8 +127,13 @@ const LoginDialog = ({ open, setOpen }) => {
    
 }
 
-const signupUser = () => {
+const signupUser = async () => {
+  let response = await authenticateSignup(signup);
+  if(!response) return;
+  handleClose();
+  setAccount(signup.firstname)
   
+
 }
 
   return (
@@ -156,6 +167,7 @@ const signupUser = () => {
           <TextField variant="standard" onChange={(e) => onInputChange(e)} name='username' label="Enter UserName" />
           <TextField variant="standard" onChange={(e) => onInputChange(e)} name='email' label="Enter Email" />
           <TextField variant="standard" onChange={(e) => onInputChange(e)} name='password'  label="Enter Password" />
+          <TextField variant="standard" onChange={(e) => onInputChange(e)} name='phone'  label="Enter Phone" />
           
           <LoginButton onClick={() => signupUser()}>Continue</LoginButton>
           
