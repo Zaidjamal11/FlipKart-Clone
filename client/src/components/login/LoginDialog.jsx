@@ -7,8 +7,9 @@ import { DataContext } from "../../context/DataProvider";
 
 
 const Component = styled(Box)`
-  height: 77vh;
+  height: 83vh;
   width: 90vh;
+  overflow: hidden;
   
 `;
 
