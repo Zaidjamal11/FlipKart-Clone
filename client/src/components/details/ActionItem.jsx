@@ -49,10 +49,9 @@ const ActionItem = ({ product }) => {
   const { id } = product;
 
   const addItemToCart = () => {
-    navigate('/cart');
     dispatch(addToCart(id, quantity));
-
-  }
+    navigate('/cart');
+}
 
 
 
